@@ -1,10 +1,13 @@
 import { Component } from '@angular/core';
 import {Course} from "../models/course";
 import { CoursesService } from '../services/courses.service';
+<<<<<<< HEAD
 import { Observable, of } from 'rxjs';
 import { catchError } from 'rxjs/operators';
 import { MatDialog } from '@angular/material/dialog';
 import { ErrorDialogComponent } from '../../shared/components/error-dialog/error-dialog.component';
+=======
+>>>>>>> parent of d9e4b81 (Revert "First service")
 
 @Component({
   selector: 'app-courses',
@@ -12,6 +15,7 @@ import { ErrorDialogComponent } from '../../shared/components/error-dialog/error
   styleUrl: './courses.component.scss'
 })
 export class CoursesComponent {
+<<<<<<< HEAD
   courses$: Observable<Course[]>;
   displayedColumns: string[] = ['name', 'category'];
 
@@ -24,6 +28,13 @@ export class CoursesComponent {
       this.openError('Erro ao carregar dados')
       return of([]);
     }));
+=======
+  courses: Course[] = [];
+  displayedColumns: string[] = ['name', 'category'];
+
+  constructor(private coursesService: CoursesService) {
+    this.courses = this.coursesService.list();
+>>>>>>> parent of d9e4b81 (Revert "First service")
   }
 
   openError(errorMessage: string) {

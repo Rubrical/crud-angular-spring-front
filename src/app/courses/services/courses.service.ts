@@ -18,5 +18,12 @@ export class CoursesService {
       delay(5000),
       tap(courses => console.log(courses))
       );
+
+  constructor(private httpClient: HttpClient) { }
+
+  list(): Course[] {
+    return [
+      {_id: '1', name: 'angular', category: 'front-end'}
+    ];
   }
 }
