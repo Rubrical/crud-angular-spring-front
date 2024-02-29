@@ -5,7 +5,7 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { provideAnimationsAsync } from '@angular/platform-browser/animations/async';
 import {MatToolbarModule} from '@angular/material/toolbar';
-import {MatIcon} from "@angular/material/icon";
+import { HttpClientModule } from '@angular/common/http';
 
 
 @NgModule({
@@ -16,7 +16,7 @@ import {MatIcon} from "@angular/material/icon";
     BrowserModule,
     AppRoutingModule,
     MatToolbarModule,
-    MatIcon
+    HttpClientModule
   ],
   providers: [
     provideAnimationsAsync()
