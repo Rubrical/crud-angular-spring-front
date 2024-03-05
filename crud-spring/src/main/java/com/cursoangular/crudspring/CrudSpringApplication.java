@@ -23,7 +23,7 @@ public class CrudSpringApplication {
 			Course c2 = new Course(2L, "Java", "back-end");
 			Course c3 = new Course(3L, "Spring", "back-end");
 
-			Course c = new Course(4L, "Angular com Spring", "spring");
+			Course c = new Course(4L, "Angular com Spring", "front-end");
 
 			courseRepository.save(c1);
 			courseRepository.save(c2);
