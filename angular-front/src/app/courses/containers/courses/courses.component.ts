@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { Course } from "../../models/course";
+import { Course } from '../../models/course';
 import { CoursesService } from '../../services/courses.service';
 import { Observable, of } from 'rxjs';
 import { catchError } from 'rxjs/operators';
@@ -40,6 +40,10 @@ export class CoursesComponent {
 
   onAdd() {
     this.router.navigate(['new'], { relativeTo: this.activatedRoute})
+  }
+
+  onEdit(course: Course) {
+      this.router.navigate(['edit', course._id], { relativeTo: this.activatedRoute})
   }
 
 }
