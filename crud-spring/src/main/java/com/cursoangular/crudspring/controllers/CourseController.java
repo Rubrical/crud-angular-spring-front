@@ -28,6 +28,7 @@ public class CourseController {
     }
 
     @PostMapping
+    @PutMapping
     public ResponseEntity<Course> create(@RequestBody Course course) {
         return ResponseEntity.status(HttpStatus.CREATED).body(courseRepository.save(course));
     }
