@@ -21,10 +21,7 @@ export class CoursesService {
   }
 
   save(course: Partial<Course>) {
-    if (course._id) {
-      return this.update(course);
-    }
-    return this.create(course);
+    return this.httpClient.post<Course>(this.API, course).pipe(first());
   }
 
   findById(id: string) {
@@ -35,7 +32,4 @@ export class CoursesService {
     return this.httpClient.post<Course>(this.API, course).pipe(first());
   }
 
-  private update(course: Partial<Course>) {
-    return this.httpClient.put<Course>(`${this.API}/${course._id}`, course).pipe(first());
-  }
 }
