@@ -33,4 +33,12 @@ public class CourseController {
         return ResponseEntity.status(HttpStatus.CREATED).body(courseRepository.save(course));
     }
 
+    @DeleteMapping("/{id}")
+    public ResponseEntity<Void> delete(@PathVariable Long id) {
+        return courseRepository.findById(id)
+                .map(course -> {
+                    courseRepository.deleteById(id);
+                    return ResponseEntity.noContent().<Void>build();
+                }).orElse(ResponseEntity.notFound().build());
+    }
 }

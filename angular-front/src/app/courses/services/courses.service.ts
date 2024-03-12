@@ -28,8 +28,12 @@ export class CoursesService {
     return this.httpClient.get<Course>(`${this.API}/${id}`);
   }
 
-  private create(course: Partial<Course>) {
-    return this.httpClient.post<Course>(this.API, course).pipe(first());
+  remove(id: string) {
+    return this.httpClient.delete(`${this.API}/${id}`).pipe(first());
   }
+
+  // private create(course: Partial<Course>) {
+  //   return this.httpClient.post<Course>(this.API, course).pipe(first());
+  // }
 
 }
