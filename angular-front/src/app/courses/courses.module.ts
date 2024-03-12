@@ -9,12 +9,11 @@ import { CourseFormComponent } from './containers/course-form/course-form.compon
 import {ReactiveFormsModule} from "@angular/forms";
 import { CoursesTableListComponent } from './components/courses-table-list/courses-table-list.component';
 
-
 @NgModule({
   declarations: [
     CoursesComponent,
     CourseFormComponent,
-    CoursesTableListComponent
+    CoursesTableListComponent,
   ],
   imports: [
     CommonModule,
