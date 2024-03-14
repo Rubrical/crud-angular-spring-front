@@ -1,5 +1,6 @@
 package com.cursoangular.crudspring.services;
 
+import com.cursoangular.crudspring.exceptions.RecordNotFoundException;
 import com.cursoangular.crudspring.models.Course;
 import com.cursoangular.crudspring.repositories.CourseRepository;
 import jakarta.validation.Valid;
@@ -11,7 +12,6 @@ import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.PathVariable;
 
 import java.util.List;
-import java.util.Optional;
 
 @Service
 @AllArgsConstructor
@@ -24,19 +24,18 @@ public class CourseService {
         return courseRepository.findAll();
     }
 
-    public Optional<Course> findById(@PathVariable @NotNull @Positive Long id) {
-        return courseRepository.findById(id);
+    public Course findById(@PathVariable @NotNull @Positive Long id) {
+        return courseRepository.findById(id).orElseThrow(() -> new RecordNotFoundException(id));
     }
 
     public Course create(@Valid Course course) {
         return courseRepository.save(course);
     }
 
-    public boolean delete(@PathVariable @NotNull @Positive Long id) {
-        return courseRepository.findById(id)
-                .map(course -> {
-                    courseRepository.deleteById(id);
-                    return true;
-                }).orElse(false);
+    public void delete(@PathVariable @NotNull @Positive Long id) {
+        courseRepository.delete(courseRepository.findById(id)
+                .orElseThrow(
+                        () -> new RecordNotFoundException(id)
+                ));
     }
 }

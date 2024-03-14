@@ -1,5 +1,6 @@
 package com.cursoangular.crudspring.controllers;
 
+import com.cursoangular.crudspring.exceptions.RecordNotFoundException;
 import com.cursoangular.crudspring.models.Course;
 import com.cursoangular.crudspring.services.CourseService;
 import jakarta.validation.Valid;
@@ -27,9 +28,8 @@ public class CourseController {
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<Course> findById(@PathVariable @NotNull @Positive Long id) {
-        return courseService.findById(id).map(record -> ResponseEntity.ok().body(record))
-                .orElse(ResponseEntity.notFound().build());
+    public Course findById(@PathVariable @NotNull @Positive Long id) {
+        return courseService.findById(id);
     }
 
     @PostMapping
@@ -39,10 +39,8 @@ public class CourseController {
     }
 
     @DeleteMapping("/{id}")
-    public ResponseEntity<Void> delete(@PathVariable @NotNull @Positive Long id) {
-        if (courseService.delete(id)) {
-            return ResponseEntity.noContent().build();
-        }
-        return ResponseEntity.notFound().build();
+    @ResponseStatus(HttpStatus.NO_CONTENT)
+    public void delete(@PathVariable @NotNull @Positive Long id) {
+        courseService.delete(id);
     }
 }
