@@ -17,7 +17,7 @@ export class CourseFormComponent {
     _id: [''],
     name: ['', [
       Validators.required,
-      Validators.minLength(5),
+      Validators.minLength(3),
       Validators.maxLength(255)
     ]],
     category: ['', [Validators.required]]
