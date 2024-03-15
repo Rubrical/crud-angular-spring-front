@@ -1,6 +1,5 @@
 package com.cursoangular.crudspring.controllers;
 
-import com.cursoangular.crudspring.exceptions.RecordNotFoundException;
 import com.cursoangular.crudspring.models.Course;
 import com.cursoangular.crudspring.services.CourseService;
 import jakarta.validation.Valid;
@@ -34,8 +33,9 @@ public class CourseController {
 
     @PostMapping
     @PutMapping
-    public ResponseEntity<Course> create(@RequestBody @Valid Course course) {
-        return ResponseEntity.status(HttpStatus.CREATED).body(courseService.create(course));
+    public ResponseEntity<Course> save(@RequestBody @Valid Course course) {
+        Course savedCourse = courseService.create(course);
+        return ResponseEntity.status(HttpStatus.CREATED).body(savedCourse);
     }
 
     @DeleteMapping("/{id}")
